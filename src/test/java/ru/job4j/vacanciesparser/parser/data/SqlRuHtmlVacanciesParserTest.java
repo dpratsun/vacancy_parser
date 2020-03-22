@@ -1,22 +1,25 @@
-package ru.job4j.vacanciesparser.dataparser;
+package ru.job4j.vacanciesparser.parser.data;
 
 import org.junit.Test;
+import ru.job4j.vacanciesparser.parser.data.SqlRuHtmlVacanciesParser;
+import ru.job4j.vacanciesparser.parser.data.VacanciesParser;
 import ru.job4j.vacanciesparser.dataprovider.DataProvider;
 import ru.job4j.vacanciesparser.dataprovider.FileDataProvider;
 import ru.job4j.vacanciesparser.entity.Vacancy;
 import ru.job4j.vacanciesparser.predicate.JavaVacancyPredicate;
 import ru.job4j.vacanciesparser.predicate.VacancyDatePredicate;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class SqlRuHtmlVacanciesParserTest {
     private final VacanciesParser parser = new SqlRuHtmlVacanciesParser(
             new JavaVacancyPredicate(),
-            new VacancyDatePredicate(LocalDateTime.of(2019, 12, 31, 23, 59, 59))
+            new VacancyDatePredicate(new Date())
     );
     private final DataProvider provider = new FileDataProvider();
 

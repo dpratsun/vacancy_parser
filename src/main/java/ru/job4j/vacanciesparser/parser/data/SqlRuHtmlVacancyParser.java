@@ -1,7 +1,6 @@
-package ru.job4j.vacanciesparser.dataparser;
+package ru.job4j.vacanciesparser.parser.data;
 
 import org.jsoup.Jsoup;
-import ru.job4j.vacanciesparser.dataprovider.DataProvider;
 import ru.job4j.vacanciesparser.entity.Vacancy;
 
 public class SqlRuHtmlVacancyParser implements VacancyParser {

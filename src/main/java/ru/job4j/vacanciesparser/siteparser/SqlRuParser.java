@@ -1,7 +1,7 @@
 package ru.job4j.vacanciesparser.siteparser;
 
-import ru.job4j.vacanciesparser.dataparser.VacanciesParser;
-import ru.job4j.vacanciesparser.dataparser.VacancyParser;
+import ru.job4j.vacanciesparser.parser.data.VacanciesParser;
+import ru.job4j.vacanciesparser.parser.data.VacancyParser;
 import ru.job4j.vacanciesparser.dataprovider.DataProvider;
 import ru.job4j.vacanciesparser.entity.Vacancy;
 

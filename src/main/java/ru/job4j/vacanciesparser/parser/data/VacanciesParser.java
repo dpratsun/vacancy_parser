@@ -1,4 +1,4 @@
-package ru.job4j.vacanciesparser.dataparser;
+package ru.job4j.vacanciesparser.parser.data;
 
 import ru.job4j.vacanciesparser.entity.Vacancy;
 

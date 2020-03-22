@@ -1,6 +1,7 @@
-package ru.job4j.vacanciesparser.dataparser;
+package ru.job4j.vacanciesparser.parser.data;
 
 import org.junit.Test;
+import ru.job4j.vacanciesparser.parser.data.SqlRuHtmlVacancyParser;
 import ru.job4j.vacanciesparser.dataprovider.FileDataProvider;
 import ru.job4j.vacanciesparser.entity.Vacancy;
 
