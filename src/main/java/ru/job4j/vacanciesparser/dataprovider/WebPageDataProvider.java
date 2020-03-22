@@ -6,8 +6,8 @@ import org.jsoup.Jsoup;
 
 import java.io.IOException;
 
-public class JSoupDataProvider implements DataProvider {
-    private static final Logger LOG = LogManager.getLogger(JSoupDataProvider.class);
+public class WebPageDataProvider implements DataProvider {
+    private static final Logger LOG = LogManager.getLogger(WebPageDataProvider.class);
 
     @Override
     public String get(String source) {
