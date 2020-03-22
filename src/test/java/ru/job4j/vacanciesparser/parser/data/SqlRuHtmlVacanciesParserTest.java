@@ -1,14 +1,15 @@
 package ru.job4j.vacanciesparser.parser.data;
 
 import org.junit.Test;
-import ru.job4j.vacanciesparser.parser.data.SqlRuHtmlVacanciesParser;
-import ru.job4j.vacanciesparser.parser.data.VacanciesParser;
 import ru.job4j.vacanciesparser.dataprovider.DataProvider;
 import ru.job4j.vacanciesparser.dataprovider.FileDataProvider;
 import ru.job4j.vacanciesparser.entity.Vacancy;
+import ru.job4j.vacanciesparser.parser.date.SqlRuDateParser;
 import ru.job4j.vacanciesparser.predicate.JavaVacancyPredicate;
 import ru.job4j.vacanciesparser.predicate.VacancyDatePredicate;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +19,14 @@ import static org.junit.Assert.assertTrue;
 
 public class SqlRuHtmlVacanciesParserTest {
     private final VacanciesParser parser = new SqlRuHtmlVacanciesParser(
+            new SqlRuDateParser(),
             new JavaVacancyPredicate(),
-            new VacancyDatePredicate(new Date())
+            new VacancyDatePredicate(new SimpleDateFormat("dd-mm-Y H:mm").parse("08-03-2020 00:00"))
     );
     private final DataProvider provider = new FileDataProvider();
+
+    public SqlRuHtmlVacanciesParserTest() throws ParseException {
+    }
 
     @Test
     public void whenNoVacanciesThanParseShouldReturnEmptyList() {

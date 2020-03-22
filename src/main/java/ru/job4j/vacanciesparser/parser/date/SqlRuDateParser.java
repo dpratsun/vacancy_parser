@@ -11,6 +11,7 @@ public class SqlRuDateParser implements DateParser {
     private final static String YESTERDAY = "вчера";
     private final static String PATTERN = "dd MMM yy',' h:mm";
     private final static String[] MONTHS = {"янв", "фев", "мар", "апр", "мая", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"};
+
     private SimpleDateFormat simpleDateFormat;
 
     public SqlRuDateParser() {
@@ -43,7 +44,9 @@ public class SqlRuDateParser implements DateParser {
     }
 
     private String replace(String date, String target, Calendar day) {
-        var replacement = day.get(Calendar.DAY_OF_MONTH) + " " + MONTHS[day.get(Calendar.MONTH)] + " " + day.get(Calendar.YEAR);
+        var replacement = day.get(Calendar.DAY_OF_MONTH)
+                + " " + MONTHS[day.get(Calendar.MONTH)]
+                + " " + day.get(Calendar.YEAR);
         return date.replace(target, replacement);
     }
 }
