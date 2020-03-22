@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface VacancyRepository {
     void store(List<Vacancy> vacancies);
+
+    List<Vacancy> findAll();
 }
