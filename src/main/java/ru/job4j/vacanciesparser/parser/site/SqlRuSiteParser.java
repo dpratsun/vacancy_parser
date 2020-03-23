@@ -52,7 +52,7 @@ public class SqlRuSiteParser implements SiteParser {
 
             LOG.info(vacancies.size() + " vacancies have been found.");
         }
-        LOG.info(String.format("Sql.ru parse completed. %d vacancies have been found", result.size()));
+        LOG.info(String.format("Sql.ru parse is completed. %d vacancies have been found", result.size()));
         return result;
     }
 }

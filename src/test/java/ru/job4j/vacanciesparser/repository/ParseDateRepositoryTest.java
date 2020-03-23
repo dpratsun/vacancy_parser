@@ -22,7 +22,7 @@ public class ParseDateRepositoryTest {
         var expected = firstDay.getTime();
         var actual = new ParseDateRepository() {
             @Override
-            public void add() {}
+            public void add() { }
 
             @Override
             public Date getLast() {
