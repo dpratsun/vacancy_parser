@@ -44,15 +44,18 @@ public class Vacancy {
             return false;
         }
 
-        return name.equals(vacancy.name) && text.equals(vacancy.text) && url.equals(vacancy.url);
+        return name.equals(vacancy.name);
     }
 
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (text != null ? text.hashCode() : 0);
-        result = 31 * result + (url != null ? url.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Vacancy{" + "name='" + name + '\'' + '}';
     }
 }

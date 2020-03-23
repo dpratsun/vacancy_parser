@@ -2,6 +2,8 @@ package ru.job4j.vacanciesparser.parser.date;
 
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
@@ -27,11 +29,11 @@ public class SqlRuDateParserTest {
     }
 
     @Test
-    public void whenParseDateShouldReturnCorrectDate() {
+    public void whenParseDateShouldReturnCorrectDate() throws ParseException {
         String date = "22 мар 20, 10:00";
-        Calendar today = Calendar.getInstance();
-        setTime(today, 10, 0);
-        assertEquals(parser.parse(date), today.getTime());
+        var expected = new SimpleDateFormat("dd-MM-yyyy H:mm")
+                .parse("22-03-2020 10:00");
+        assertEquals(expected, parser.parse(date));
     }
 
     private void setTime(Calendar day, int hours, int minutes) {

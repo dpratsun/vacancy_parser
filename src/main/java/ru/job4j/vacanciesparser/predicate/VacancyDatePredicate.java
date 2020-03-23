@@ -1,9 +1,8 @@
 package ru.job4j.vacanciesparser.predicate;
 
 import java.util.Date;
-import java.util.function.Predicate;
 
-public class VacancyDatePredicate implements Predicate<Date> {
+public class VacancyDatePredicate implements DatePredicate {
     private final Date lastParsedDate;
 
     public VacancyDatePredicate(Date lastParsedDate) {

@@ -1,8 +1,6 @@
 package ru.job4j.vacanciesparser.predicate;
 
-import java.util.function.Predicate;
-
-public class JavaVacancyPredicate implements Predicate<String> {
+public class JavaVacancyPredicate implements VacancyPredicate {
     @Override
     public boolean test(String s) {
         s = s.toLowerCase();

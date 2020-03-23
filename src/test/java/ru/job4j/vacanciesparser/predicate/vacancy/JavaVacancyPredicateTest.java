@@ -1,4 +1,4 @@
-package ru.job4j.vacanciesparser.vacancypredicate;
+package ru.job4j.vacanciesparser.predicate.vacancy;
 
 import org.junit.Test;
 import ru.job4j.vacanciesparser.predicate.JavaVacancyPredicate;

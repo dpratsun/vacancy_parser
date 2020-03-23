@@ -1,0 +1,4 @@
+CREATE TABLE `parse_date` (
+`id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+`date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

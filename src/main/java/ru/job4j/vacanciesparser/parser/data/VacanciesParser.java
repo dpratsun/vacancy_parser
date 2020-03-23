@@ -2,8 +2,8 @@ package ru.job4j.vacanciesparser.parser.data;
 
 import ru.job4j.vacanciesparser.entity.Vacancy;
 
-import java.util.List;
+import java.util.Set;
 
 public interface VacanciesParser {
-    List<Vacancy> parse(String data);
+    Set<Vacancy> parse(String data);
 }

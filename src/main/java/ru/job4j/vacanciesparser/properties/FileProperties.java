@@ -2,13 +2,12 @@ package ru.job4j.vacanciesparser.properties;
 
 import java.io.InputStream;
 import java.util.NoSuchElementException;
-import java.util.Properties;
 
-public class FileProperties implements IProperties {
-    private Properties properties;
+public class FileProperties implements Properties {
+    private java.util.Properties properties;
 
     public FileProperties(String filename) {
-        properties = new Properties();
+        properties = new java.util.Properties();
         try (InputStream in = FileProperties.class.getClassLoader().getResourceAsStream(filename)) {
             properties.load(in);
         } catch (Exception e) {

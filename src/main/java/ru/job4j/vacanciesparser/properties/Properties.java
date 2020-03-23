@@ -1,5 +1,5 @@
 package ru.job4j.vacanciesparser.properties;
 
-public interface IProperties {
+public interface Properties {
     String getValue(String property);
 }

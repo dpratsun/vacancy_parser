@@ -10,8 +10,7 @@ import ru.job4j.vacanciesparser.predicate.VacancyDatePredicate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -37,7 +36,7 @@ public class SqlRuHtmlVacanciesParserTest {
     @Test
     public void whenPageHaveVacanciesThanParserShouldReturnListOfAllVacancies() {
         var result = parser.parse(provider.get("sqlru.html"));
-        List<Vacancy> expected = List.of(
+        Set<Vacancy> expected = Set.of(
                 new Vacancy(0, "Lead Android developer (Java), Moscow, to 250000", "", "https://www.sql.ru/forum/1323427/vedushhiy-razrabotchik-android-java-moskva-do-250k"),
                 new Vacancy(0, "JAVA # Moscow", "", "https://www.sql.ru/forum/1321527/java-moskva"),
                 new Vacancy(0, "java developer needed (middle/middle+) projects IoT MTC", "", "https://www.sql.ru/forum/1322779/nuzhen-java-razrabotchik-middle-middle-proekty-iot-mts")

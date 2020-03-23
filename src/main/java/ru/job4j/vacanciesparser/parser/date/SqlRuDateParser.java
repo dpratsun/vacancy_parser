@@ -1,5 +1,9 @@
 package ru.job4j.vacanciesparser.parser.date;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ru.job4j.vacanciesparser.dataprovider.WebPageDataProvider;
+
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,6 +11,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class SqlRuDateParser implements DateParser {
+    private static final Logger LOG = LogManager.getLogger(SqlRuDateParser.class);
+
     private final static String TODAY = "сегодня";
     private final static String YESTERDAY = "вчера";
     private final static String PATTERN = "dd MMM yy',' h:mm";
@@ -27,7 +33,7 @@ public class SqlRuDateParser implements DateParser {
         try {
             result = simpleDateFormat.parse(date);
         } catch (ParseException e) {
-            e.printStackTrace();
+            LOG.error(String.format("Error during parsing of the string: %s", date), e);
         }
         return result;
     }

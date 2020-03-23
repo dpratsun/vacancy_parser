@@ -1,14 +1,15 @@
 package ru.job4j.vacanciesparser.dataprovider;
 
-import ru.job4j.vacanciesparser.properties.FileProperties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class FileDataProvider implements DataProvider {
+    private static final Logger LOG = LogManager.getLogger(FileDataProvider.class);
+
     @Override
     public String get(String source) {
         var data = "";
@@ -17,7 +18,7 @@ public class FileDataProvider implements DataProvider {
             var bf = new BufferedReader(new InputStreamReader(resource, Charset.forName("windows-1251")));
             data = bf.lines().reduce("", String::concat);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error(String.format("Error getting data from file: %s", source), e);
         }
         return data;
     }
