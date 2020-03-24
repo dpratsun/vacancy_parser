@@ -3,7 +3,7 @@ package ru.job4j.vacanciesparser.parser.data;
 import org.jsoup.Jsoup;
 import ru.job4j.vacanciesparser.entity.Vacancy;
 
-public class SqlRuHtmlVacancyParser implements VacancyParser {
+public class SqlRuVacancyParser implements VacancyParser {
 
     @Override
     public Vacancy parse(String data) {

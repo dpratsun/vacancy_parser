@@ -15,13 +15,13 @@ public class SqlRuSiteParser implements SiteParser {
 
     private VacanciesParser vacanciesParser;
     private VacancyParser vacancyParser;
-    private DataProvider data;
+    private DataProvider dataProvider;
     private String source;
 
-    public SqlRuSiteParser(VacanciesParser vacanciesParser, VacancyParser vacancyParser, DataProvider data, String source) {
+    public SqlRuSiteParser(VacanciesParser vacanciesParser, VacancyParser vacancyParser, DataProvider dataProvider, String source) {
         this.vacanciesParser = vacanciesParser;
         this.vacancyParser = vacancyParser;
-        this.data = data;
+        this.dataProvider = dataProvider;
         this.source = source;
     }
 
@@ -30,7 +30,7 @@ public class SqlRuSiteParser implements SiteParser {
         LOG.info("Trying to parse Sql.ru for vacancies. Source to parse is " + source);
 
         Set<Vacancy> result = new HashSet<>();
-        var html = data.get(source);
+        var html = dataProvider.get(source);
         var vacancies = vacanciesParser.parse(html);
 
         LOG.info(vacancies.size() + " vacancies have been found.");
@@ -38,7 +38,7 @@ public class SqlRuSiteParser implements SiteParser {
         int page = 2;
         while (!vacancies.isEmpty()) {
             for (var vacancy: vacancies) {
-                var vacancyPage = data.get(vacancy.getUrl());
+                var vacancyPage = dataProvider.get(vacancy.getUrl());
                 var vacancyPageParseResult = vacancyParser.parse(vacancyPage);
                 vacancy.setText(vacancyPageParseResult.getText());
                 result.add(vacancy);
@@ -47,7 +47,7 @@ public class SqlRuSiteParser implements SiteParser {
             var nextSource = source + page++;
             LOG.info("Trying to parse next Sql.ru source. Source is " + nextSource);
 
-            html = data.get(nextSource);
+            html = dataProvider.get(nextSource);
             vacancies = vacanciesParser.parse(html);
 
             LOG.info(vacancies.size() + " vacancies have been found.");

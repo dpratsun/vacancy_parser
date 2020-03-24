@@ -28,17 +28,16 @@ public class SqlRuDateParser implements DateParser {
 
     @Override
     public Date parse(String date) {
-        Date result = null;
-        date = prepareDate(date);
+        Date result = Calendar.getInstance().getTime();
         try {
-            result = simpleDateFormat.parse(date);
+            result = simpleDateFormat.parse(prepareDateString(date));
         } catch (ParseException e) {
             LOG.error(String.format("Error during parsing of the string: %s", date), e);
         }
         return result;
     }
 
-    private String prepareDate(String date) {
+    private String prepareDateString(String date) {
         if (date.contains(TODAY)) {
             date = replace(date, TODAY, Calendar.getInstance());
         } else if (date.contains(YESTERDAY)) {

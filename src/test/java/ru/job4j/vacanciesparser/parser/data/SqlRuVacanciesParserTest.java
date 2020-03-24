@@ -16,15 +16,15 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class SqlRuHtmlVacanciesParserTest {
-    private final VacanciesParser parser = new SqlRuHtmlVacanciesParser(
+public class SqlRuVacanciesParserTest {
+    private final VacanciesParser parser = new SqlRuVacanciesParser(
             new SqlRuDateParser(),
             new JavaVacancyPredicate(),
             new VacancyDatePredicate(new SimpleDateFormat("dd-mm-Y H:mm").parse("08-03-2020 00:00"))
     );
     private final DataProvider provider = new FileDataProvider();
 
-    public SqlRuHtmlVacanciesParserTest() throws ParseException {
+    public SqlRuVacanciesParserTest() throws ParseException {
     }
 
     @Test

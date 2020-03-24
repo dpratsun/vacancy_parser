@@ -1,6 +1,7 @@
 package ru.job4j.vacanciesparser.repository;
 
 import java.sql.Connection;
+import java.text.ParseException;
 import java.util.Date;
 
 public class SqlParseDateRepository implements ParseDateRepository {
@@ -29,11 +30,13 @@ public class SqlParseDateRepository implements ParseDateRepository {
             var result = statement.executeQuery();
             if (result.next()) {
                 date = new Date(result.getTimestamp(1).getTime());
-            } else {
-                date = getDefaultDate();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                date = getDefaultDate();
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
         }
         return date;
     }

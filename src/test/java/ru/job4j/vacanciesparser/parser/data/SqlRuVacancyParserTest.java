@@ -1,17 +1,16 @@
 package ru.job4j.vacanciesparser.parser.data;
 
 import org.junit.Test;
-import ru.job4j.vacanciesparser.parser.data.SqlRuHtmlVacancyParser;
 import ru.job4j.vacanciesparser.dataprovider.FileDataProvider;
 import ru.job4j.vacanciesparser.entity.Vacancy;
 
 import static org.junit.Assert.*;
 
-public class SqlRuHtmlVacancyParserTest {
+public class SqlRuVacancyParserTest {
 
     @Test
     public void whenParseCorrectPageShouldReturnParsedVacancy() {
-        var parser = new SqlRuHtmlVacancyParser();
+        var parser = new SqlRuVacancyParser();
         var result = parser.parse(new FileDataProvider().get("androidjava.html"));
         var expected = new Vacancy(
                 0,

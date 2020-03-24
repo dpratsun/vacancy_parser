@@ -11,11 +11,9 @@ public class SqlConnectionManager implements ConnectionManager, AutoCloseable {
     private final static String CONNECTION_USER_PROPERTY = "username";
     private final static String CONNECTION_PASSWORD_PROPERTY = "password";
 
-    private Properties properties;
     private Connection connection;
 
     public SqlConnectionManager(Properties properties) throws SQLException {
-        this.properties = properties;
         connection = DriverManager.getConnection(
                 properties.getValue(CONNECTION_URL_PROPERTY),
                 properties.getValue(CONNECTION_USER_PROPERTY),
@@ -31,7 +29,10 @@ public class SqlConnectionManager implements ConnectionManager, AutoCloseable {
     @Override
     public void close() throws Exception {
         if (connection != null) {
-            connection.close();
+            if (!connection.isClosed()) {
+                connection.commit();
+                connection.close();
+            }
         }
     }
 }
