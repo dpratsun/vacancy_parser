@@ -20,7 +20,7 @@ public class SqlRuSiteParserFactory {
                         new VacancyDatePredicate(lastParseDate)
                 ),
                 new SqlRuVacancyParser(),
-                new WebPageDataProvider("windows-1251"),
+                new WebPageDataProvider(),
                 url
         );
     }
