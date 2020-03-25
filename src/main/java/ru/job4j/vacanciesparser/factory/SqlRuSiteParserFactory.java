@@ -11,8 +11,10 @@ import ru.job4j.vacanciesparser.predicate.VacancyDatePredicate;
 
 import java.util.Date;
 
-public class SqlRuSiteParserFactory {
-    public static SiteParser build(Date lastParseDate, String url) {
+public class SqlRuSiteParserFactory implements SiteParserFactory {
+
+    @Override
+    public SiteParser build(Date lastParseDate, String source) {
         return new SqlRuSiteParser(
                 new SqlRuVacanciesParser(
                         new SqlRuDateParser(),
@@ -21,7 +23,7 @@ public class SqlRuSiteParserFactory {
                 ),
                 new SqlRuVacancyParser(),
                 new WebPageDataProvider(),
-                url
+                source
         );
     }
 }
