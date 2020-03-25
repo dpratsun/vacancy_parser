@@ -3,6 +3,7 @@ package ru.job4j.vacanciesparser.parser.site;
 import org.junit.Test;
 import ru.job4j.vacanciesparser.dataprovider.FileDataProvider;
 import ru.job4j.vacanciesparser.entity.Vacancy;
+import ru.job4j.vacanciesparser.factory.SqlRuSiteParserFactory;
 import ru.job4j.vacanciesparser.parser.data.SqlRuVacanciesParser;
 import ru.job4j.vacanciesparser.parser.data.SqlRuVacancyParser;
 import ru.job4j.vacanciesparser.parser.date.SqlRuDateParser;
@@ -19,15 +20,8 @@ public class SqlRuSiteParserTest {
 
     @Test
     public void whenParseSiteShouldReturnAllCorrectVacancies() throws ParseException {
-        var parser = new SqlRuSiteParser(
-                new SqlRuVacanciesParser(
-                    new SqlRuDateParser(),
-                    new JavaVacancyPredicate(),
-                    new VacancyDatePredicate(new SimpleDateFormat("dd-mm-Y H:mm").parse("08-03-2020 00:00"))
-                ),
-                new SqlRuVacancyParser(),
-                new FileDataProvider(),
-                "sqlru.html");
+        var parser = new SqlRuSiteParserFactory(new FileDataProvider())
+                .build(new SimpleDateFormat("dd-mm-Y H:mm").parse("08-03-2020 00:00"), "sqlru.html");
         var result = parser.parse();
         var expected = Set.of(
                 new Vacancy(0, "JAVA # Moscow", "", ""),

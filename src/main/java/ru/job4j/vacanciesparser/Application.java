@@ -3,6 +3,7 @@ package ru.job4j.vacanciesparser;
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
+import ru.job4j.vacanciesparser.dataprovider.WebPageDataProvider;
 import ru.job4j.vacanciesparser.factory.SqlRuSiteParserFactory;
 import ru.job4j.vacanciesparser.job.ParseJob;
 import ru.job4j.vacanciesparser.properties.FileProperties;
@@ -35,7 +36,7 @@ public class Application {
         var parseJob = newJob(ParseJob.class).build();
         parseJob.getJobDataMap().put(ParseJob.PROPERTIES, properties);
         parseJob.getJobDataMap().put(ParseJob.SOURCE, properties.getValue(SQL_RU_URL_PROPERTY));
-        parseJob.getJobDataMap().put(ParseJob.FACTORY, new SqlRuSiteParserFactory());
+        parseJob.getJobDataMap().put(ParseJob.FACTORY, new SqlRuSiteParserFactory(new WebPageDataProvider()));
         return parseJob;
     }
 

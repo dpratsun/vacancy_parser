@@ -1,5 +1,6 @@
 package ru.job4j.vacanciesparser.factory;
 
+import ru.job4j.vacanciesparser.dataprovider.DataProvider;
 import ru.job4j.vacanciesparser.dataprovider.WebPageDataProvider;
 import ru.job4j.vacanciesparser.parser.data.SqlRuVacanciesParser;
 import ru.job4j.vacanciesparser.parser.data.SqlRuVacancyParser;
@@ -13,6 +14,12 @@ import java.util.Date;
 
 public class SqlRuSiteParserFactory implements SiteParserFactory {
 
+    private final DataProvider dataProvider;
+
+    public SqlRuSiteParserFactory(DataProvider dataProvider) {
+        this.dataProvider = dataProvider;
+    }
+
     @Override
     public SiteParser build(Date lastParseDate, String source) {
         return new SqlRuSiteParser(
@@ -22,7 +29,7 @@ public class SqlRuSiteParserFactory implements SiteParserFactory {
                         new VacancyDatePredicate(lastParseDate)
                 ),
                 new SqlRuVacancyParser(),
-                new WebPageDataProvider(),
+                dataProvider,
                 source
         );
     }
