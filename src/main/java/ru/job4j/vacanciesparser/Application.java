@@ -18,11 +18,12 @@ public class Application {
     private final static String CRON_PROPERTY = "cron.time";
     private final static String SQL_RU_URL_PROPERTY = "sqlru.url";
 
+    private final static Properties PROPERTIES = new FileProperties(PROPERTIES_FILE);
+
     public static void main(String[] args) {
-        Properties properties = new FileProperties(PROPERTIES_FILE);
         try {
-            var parseJob = createJob(properties);
-            var parseJobTrigger = createJobTrigger(properties);
+            var parseJob = createJob();
+            var parseJobTrigger = createJobTrigger();
 
             var scheduler = new StdSchedulerFactory().getScheduler();
             scheduler.start();
@@ -32,17 +33,17 @@ public class Application {
         }
     }
 
-    private static JobDetail createJob(Properties properties) {
+    private static JobDetail createJob() {
         var parseJob = newJob(ParseJob.class).build();
-        parseJob.getJobDataMap().put(ParseJob.PROPERTIES, properties);
-        parseJob.getJobDataMap().put(ParseJob.SOURCE, properties.getValue(SQL_RU_URL_PROPERTY));
+        parseJob.getJobDataMap().put(ParseJob.PROPERTIES, PROPERTIES);
+        parseJob.getJobDataMap().put(ParseJob.SOURCE, PROPERTIES.getValue(SQL_RU_URL_PROPERTY));
         parseJob.getJobDataMap().put(ParseJob.FACTORY, new SqlRuSiteParserFactory(new WebPageDataProvider()));
         return parseJob;
     }
 
-    private static Trigger createJobTrigger(Properties properties) {
+    private static Trigger createJobTrigger() {
         return newTrigger()
-                .withSchedule(cronSchedule(properties.getValue(CRON_PROPERTY)))
+                .withSchedule(cronSchedule(PROPERTIES.getValue(CRON_PROPERTY)))
                 .build();
     }
 }

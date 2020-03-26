@@ -1,7 +1,6 @@
 package ru.job4j.vacanciesparser.factory;
 
 import ru.job4j.vacanciesparser.dataprovider.DataProvider;
-import ru.job4j.vacanciesparser.dataprovider.WebPageDataProvider;
 import ru.job4j.vacanciesparser.parser.data.SqlRuVacanciesParser;
 import ru.job4j.vacanciesparser.parser.data.SqlRuVacancyParser;
 import ru.job4j.vacanciesparser.parser.date.SqlRuDateParser;

@@ -4,11 +4,6 @@ import org.junit.Test;
 import ru.job4j.vacanciesparser.dataprovider.FileDataProvider;
 import ru.job4j.vacanciesparser.entity.Vacancy;
 import ru.job4j.vacanciesparser.factory.SqlRuSiteParserFactory;
-import ru.job4j.vacanciesparser.parser.data.SqlRuVacanciesParser;
-import ru.job4j.vacanciesparser.parser.data.SqlRuVacancyParser;
-import ru.job4j.vacanciesparser.parser.date.SqlRuDateParser;
-import ru.job4j.vacanciesparser.predicate.JavaVacancyPredicate;
-import ru.job4j.vacanciesparser.predicate.VacancyDatePredicate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

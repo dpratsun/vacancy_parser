@@ -9,7 +9,6 @@ import org.quartz.JobExecutionException;
 import ru.job4j.vacanciesparser.database.connection.SqlConnectionManager;
 import ru.job4j.vacanciesparser.factory.SiteParserFactory;
 import ru.job4j.vacanciesparser.parser.site.SiteParser;
-import ru.job4j.vacanciesparser.properties.FileProperties;
 import ru.job4j.vacanciesparser.properties.Properties;
 import ru.job4j.vacanciesparser.repository.ParseDateRepository;
 import ru.job4j.vacanciesparser.repository.SqlParseDateRepository;
@@ -25,8 +24,6 @@ public class ParseJob implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        LOG.info("Parse job");
-
         JobDataMap dataMap = jobExecutionContext.getJobDetail().getJobDataMap();
         String source = dataMap.getString(SOURCE);
         Properties properties = (Properties) dataMap.get(PROPERTIES);
