@@ -2,7 +2,6 @@ package ru.job4j.vacanciesparser.parser.date;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.job4j.vacanciesparser.dataprovider.WebPageDataProvider;
 
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
