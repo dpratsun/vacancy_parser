@@ -31,14 +31,13 @@ public class ParseJob implements Job {
 
         try (var connectionManager = new SqlConnectionManager(properties)) {
             ParseDateRepository parseDateRepository = new SqlParseDateRepository(connectionManager.getConnection());
-            VacancyRepository vacancyRepository = new SqlVacancyRepository(connectionManager.getConnection());
 
             SiteParser siteParser = factory.build(parseDateRepository.getLast(), source);
 
             LOG.info("Starting parse job for source: " + source);
 
             var vacancies = siteParser.parse();
-            vacancyRepository.store(vacancies);
+            new SqlVacancyRepository(connectionManager.getConnection()).store(vacancies);
             parseDateRepository.add();
         } catch (Exception e) {
             LOG.error("Error during parsing of " + source + e);

@@ -13,7 +13,7 @@ public class SqlVacancyRepository implements VacancyRepository {
     private final static String INSERT_SQL = "INSERT INTO `vacancy` (`name`, `text`, `url`) VALUES(?, ?, ?);";
     private final static String SELECT_SQL = "SELECT * FROM `vacancy`;";
 
-    private Connection connection;
+    private final Connection connection;
 
     public SqlVacancyRepository(Connection connection) {
         this.connection = connection;
